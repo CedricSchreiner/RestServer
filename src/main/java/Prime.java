@@ -1,7 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Prime {
 
-    public static void calculatePrimeNumbers(int max) {
+    public static List<Integer> calculatePrimeNumbers(int max) {
         int n; // Variablen fuer aktuellen Primzahlkandidaten und aktuellen Teiler
+        List<Integer> resultList = new ArrayList<>();
 
         for (int i = 2; i <= max; i++) {
             n = 2;
@@ -16,9 +20,11 @@ public class Prime {
             // Falls die Schleife bis zur Obergrenze i/2 durchlaufen wurde:
             if (n >= i / 2 + 1 && i != 1) {
                 System.out.println(i + " ist eine Primzahl.");
+                resultList.add(i);
             }
             // andernfalls wurde die Schleife vorher abgebrochen, weil i durch n
             // teilbar war -> keine Primzahl
         }
+        return resultList;
     }
 }
