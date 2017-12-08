@@ -1,7 +1,12 @@
+package service;
+
+import interfaces.PrimeServiceInterface;
+
 import java.util.ArrayList;
 import java.util.List;
+import models.Primes;
 
-public class PrimeService implements PrimeServiceInterface{
+public class PrimeService implements PrimeServiceInterface {
     @Override
     public String getPrimesAsString(int max) {
         StringBuilder primeResult = new StringBuilder();

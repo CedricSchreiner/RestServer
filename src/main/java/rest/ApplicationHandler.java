@@ -1,3 +1,6 @@
+package rest;
+
+import Constants.ApplicationHandlerConstanst;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -10,6 +13,6 @@ import javax.ws.rs.core.Application;
  * Path: /webapi
  */
 
-@ApplicationPath("/webapi")
+@ApplicationPath(ApplicationHandlerConstanst.APPLICATION_PATH)
 public class ApplicationHandler extends Application {
 }
