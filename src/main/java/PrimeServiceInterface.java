@@ -1,7 +1,11 @@
-public interface PrimeServiceInterface {
-    String getPrimeAsString(int max);
+import java.util.List;
 
-    int[] getPrimeAsIntArray(int max);
+public interface PrimeServiceInterface {
+    String getPrimesAsString(int max);
+
+    long[] gerPrimesAsArray(int max);
 
     Object getPrimeAsObject(int max);
+
+    List<Long> calculatePrimes(int max);
 }
