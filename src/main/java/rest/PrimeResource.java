@@ -23,8 +23,8 @@ public class PrimeResource {
     @GET
     @Path(PrimeResourceConstants.GET_PRIME_AS_STRING_PATH)
     @Produces(MediaType.TEXT_PLAIN)
-    public String getPrimeAsString(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
-        return primeService.getPrimesAsString(Integer.parseInt(maxPrime));
+    public Response getPrimeAsString(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
+        return Response.accepted().entity(primeService.getPrimesAsString(Integer.parseInt(maxPrime))).build();
     }
 
     @GET
@@ -32,13 +32,10 @@ public class PrimeResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPrimeAsArray(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
         JSONArray jsonArray = new JSONArray();
-        List<Long> primeList = new ArrayList<>();
         for (long prime : primeService.gerPrimesAsArray(Integer.parseInt(maxPrime))) {
-            primeList.add(prime);
+            jsonArray.add(prime);
         }
-        jsonArray.addAll(primeList);
-
-        return Response.ok().entity(jsonArray.toJSONString()).build();
+        return Response.accepted().entity(jsonArray).build();
     }
 
     @GET
@@ -48,6 +45,6 @@ public class PrimeResource {
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(PrimeResourceConstants.OBJECT_KEY, primeService.getPrimeAsObject(Integer.parseInt(maxPrime)));
-        return Response.ok().entity(jsonObject.toJSONString()).build();
+        return Response.accepted().entity(jsonObject.toJSONString()).build();
     }
 }

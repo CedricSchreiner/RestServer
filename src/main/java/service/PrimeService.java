@@ -15,7 +15,7 @@ public class PrimeService implements PrimeServiceInterface {
             primeResult.append(prime).append(", ");
         }
 
-        primeResult.indexOf(",");
+        primeResult.deleteCharAt(primeResult.lastIndexOf(","));
         return primeResult.toString();
     }
 
