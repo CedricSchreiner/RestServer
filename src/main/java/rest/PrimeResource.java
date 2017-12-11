@@ -2,10 +2,7 @@ package rest;
 
 import Constants.PrimeResourceConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.corba.se.impl.orbutil.ObjectWriter;
 import interfaces.PrimeServiceInterface;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import service.PrimeService;
 
 import javax.ws.rs.GET;
