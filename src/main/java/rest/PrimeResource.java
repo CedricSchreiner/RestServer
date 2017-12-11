@@ -1,6 +1,8 @@
 package rest;
 
 import Constants.PrimeResourceConstants;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.corba.se.impl.orbutil.ObjectWriter;
 import interfaces.PrimeServiceInterface;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,8 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
 
 @Path(PrimeResourceConstants.GET_PRIME_CLASS_PATH)
 public class PrimeResource {
@@ -23,28 +23,35 @@ public class PrimeResource {
     @GET
     @Path(PrimeResourceConstants.GET_PRIME_AS_STRING_PATH)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response getPrimeAsString(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
-        return Response.accepted().entity(primeService.getPrimesAsString(Integer.parseInt(maxPrime))).build();
+    public String getPrimeAsString(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
+        return primeService.getPrimesAsString(Integer.parseInt(maxPrime));
     }
 
     @GET
     @Path(PrimeResourceConstants.GET_PRIME_AS_ARRAY_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPrimeAsArray(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
-        JSONArray jsonArray = new JSONArray();
-        for (long prime : primeService.gerPrimesAsArray(Integer.parseInt(maxPrime))) {
-            jsonArray.add(prime);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = "";
+        try {
+            jsonString = mapper.writeValueAsString(primeService.getPrimesAsArray(Integer.parseInt(maxPrime)));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return Response.accepted().entity(jsonArray).build();
+        return Response.accepted().entity(jsonString).build();
     }
 
     @GET
     @Path(PrimeResourceConstants.GET_PRIME_AS_OBJECT_PATH)
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getPrimeAsObject(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put(PrimeResourceConstants.OBJECT_KEY, primeService.getPrimeAsObject(Integer.parseInt(maxPrime)));
-        return Response.accepted().entity(jsonObject.toJSONString()).build();
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = "";
+        try {
+            jsonString = mapper.writeValueAsString(primeService.getPrimeAsObject(Integer.parseInt(maxPrime)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Response.accepted().entity(jsonString).build();
     }
 }

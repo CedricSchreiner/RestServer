@@ -1,8 +1,10 @@
 package models;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 import java.util.Objects;
 
+@XmlRootElement
 public class Primes {
 
     private String primesAsString;

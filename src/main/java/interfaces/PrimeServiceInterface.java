@@ -5,7 +5,7 @@ import java.util.List;
 public interface PrimeServiceInterface {
     String getPrimesAsString(int max);
 
-    long[] gerPrimesAsArray(int max);
+    long[] getPrimesAsArray(int max);
 
     Object getPrimeAsObject(int max);
 

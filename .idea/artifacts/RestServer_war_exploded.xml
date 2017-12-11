@@ -40,7 +40,9 @@
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.moxy:2.6.4" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.6.4" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.asm:2.6.4" />
-          <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.6.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.6.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.6.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">
