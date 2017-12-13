@@ -16,7 +16,6 @@ public class Primes {
             this.primesAsString = primesAsString;
             this.primesAsArray = primesAsArray;
     }
-
     public String getPrimesAsString() {
         return primesAsString;
     }

@@ -18,14 +18,12 @@ public class PrimeResource {
     private PrimeServiceInterface primeService = new PrimeService();
 
     @GET
-    @Path(PrimeResourceConstants.GET_PRIME_AS_STRING_PATH)
     @Produces(MediaType.TEXT_PLAIN)
     public String getPrimeAsString(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
         return primeService.getPrimesAsString(Integer.parseInt(maxPrime));
     }
 
     @GET
-    @Path(PrimeResourceConstants.GET_PRIME_AS_ARRAY_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPrimeAsArray(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
         ObjectMapper mapper = new ObjectMapper();
@@ -39,16 +37,8 @@ public class PrimeResource {
     }
 
     @GET
-    @Path(PrimeResourceConstants.GET_PRIME_AS_OBJECT_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_XML)
     public Response getPrimeAsObject(@QueryParam(PrimeResourceConstants.QUERY_PARAM_MAX_PRIME) String maxPrime){
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = "";
-        try {
-            jsonString = mapper.writeValueAsString(primeService.getPrimeAsObject(Integer.parseInt(maxPrime)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Response.accepted().entity(jsonString).build();
+        return Response.accepted().entity(primeService.getPrimeAsObject(Integer.parseInt(maxPrime))).build();
     }
 }
